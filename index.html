@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Playfair+Display:wght@700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <title>Feliz Navidad 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #0a1128 0%, #1a2456 50%, #2d3561 100%);
+            overflow-x: hidden;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Estrellas de fondo */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Header con luces navideñas */
+        .header {
+            position: relative;
+            text-align: center;
+            padding: 40px 20px 20px;
+            z-index: 2;
+        }
+
+        .christmas-lights {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            z-index: 1;
+        }
+
+        .light {
+            width: 15px;
+            height: 20px;
+            border-radius: 50% 50% 40% 40%;
+            animation: blink 1.5s infinite;
+        }
+
+        .light:nth-child(1) { background: #ff0000; animation-delay: 0s; }
+        .light:nth-child(2) { background: #00ff00; animation-delay: 0.3s; }
+        .light:nth-child(3) { background: #0000ff; animation-delay: 0.6s; }
+        .light:nth-child(4) { background: #ffff00; animation-delay: 0.9s; }
+        .light:nth-child(5) { background: #ff00ff; animation-delay: 1.2s; }
+        .light:nth-child(6) { background: #00ffff; animation-delay: 0.2s; }
+        .light:nth-child(7) { background: #ff8800; animation-delay: 0.5s; }
+        .light:nth-child(8) { background: #ff0088; animation-delay: 0.8s; }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; box-shadow: 0 0 10px currentColor; }
+            50% { opacity: 0.3; box-shadow: none; }
+        }
+
+        h1 {
+            font-family: 'Mountains of Christmas', cursive;
+            font-size: 4em;
+            color: #ffffff;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.8),
+                         0 0 40px rgba(100, 200, 255, 0.6),
+                         3px 3px 8px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            position: relative;
+            z-index: 2;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(100, 200, 255, 0.6); }
+            50% { text-shadow: 0 0 30px rgba(255, 255, 255, 1), 0 0 60px rgba(100, 200, 255, 0.9); }
+        }
+
+        .decorative-icons {
+            font-size: 2em;
+            margin: 10px 0;
+        }
+
+        /* Botón de música */
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 12px 30px;
+            font-size: 18px;
+            font-family: 'Mountains of Christmas', cursive;
+            color: #fff;
+            background: linear-gradient(135deg, #c41e3a, #165b33);
+            border: none;
+            border-radius: 25px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 10;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(135deg, #165b33, #c41e3a);
+        }
+
+        /* Imagen de Santa/Muñeco de nieve */
+        .santa-container {
+            text-align: center;
+            margin: 40px auto;
+            position: relative;
+            z-index: 2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .santa-container svg {
+            width: 200px;
+            height: auto;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+        }
+
+        /* Tarjeta con mensaje */
+        .message-card {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(240, 248, 255, 0.95));
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+                        inset 0 0 30px rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #c41e3a, #165b33, #c41e3a);
+            border-radius: 25px;
+            z-index: -1;
+            opacity: 0.6;
+            filter: blur(10px);
+        }
+
+        .message-card h2 {
+            font-family: 'Playfair Display', serif;
+            color: #1a2456;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .message-card p {
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.1em;
+            line-height: 1.8em;
+            color: #2d3561;
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        .signature {
+            text-align: right;
+            font-style: italic;
+            margin-top: 30px;
+            color: #165b33;
+            font-weight: bold;
+        }
+
+        /* Contenedor de video y canvas */
+        .contenedor {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            align-items: center;
+            margin: 50px auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contenedor video,
+        .contenedor canvas {
+            width: 90%;
+            max-width: 700px;
+            aspect-ratio: 16 / 9;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        #snowCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Responsive */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .light {
+                width: 10px;
+                height: 15px;
+            }
+
+            .santa-container svg {
+                width: 150px;
+            }
+
+            .message-card {
+                padding: 25px;
+                margin: 20px 10px;
+            }
+
+            .message-card h2 {
+                font-size: 1.4em;
+            }
+
+            .message-card p {
+                font-size: 1em;
+            }
+
+            .contenedor video,
+            .contenedor canvas {
+                width: 95%;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .message-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div class="stars" id="starsContainer"></div>
+
+    <!-- Canvas de nieve -->
+    <canvas id="snowCanvas"></canvas>
+
+    <!-- Luces navideñas -->
+    <div class="christmas-lights">
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+        <div class="light"></div>
+    </div>
+
+    <!-- Header -->
+    <div class="header">
+        <h1>🎄 ¡Feliz Navidad 2025! 🎄</h1>
+        <div class="decorative-icons">✨ ❄️ ⭐ ❄️ ✨</div>
+    </div>
+
+    <!-- Botones de música -->
+    <div style="text-align: center; margin: 20px 0;">
+        <button id="playBtn" onclick="playMusic()">🎵 Reproducir Villancicos</button>
+        <button id="pauseBtn" onclick="toggleMusic()" style="display: none;">⏸️ Pausar Música</button>
+    </div>
+    <audio id="bg-music" loop>
+        <source src="music/villancicos.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Muñeco de nieve / Santa -->
+    <div class="santa-container">
+        <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg">
+            <!-- Muñeco de nieve -->
+            <circle cx="100" cy="180" r="50" fill="#ffffff" stroke="#e0e0e0" stroke-width="2"/>
+            <circle cx="100" cy="110" r="40" fill="#ffffff" stroke="#e0e0e0" stroke-width="2"/>
+            <circle cx="100" cy="55" r="30" fill="#ffffff" stroke="#e0e0e0" stroke-width="2"/>
+            <!-- Ojos -->
+            <circle cx="90" cy="50" r="3" fill="#000000"/>
+            <circle cx="110" cy="50" r="3" fill="#000000"/>
+            <!-- Nariz zanahoria -->
+            <polygon points="100,60 105,55 100,65" fill="#ff8800"/>
+            <!-- Sonrisa -->
+            <path d="M 85 65 Q 100 70 115 65" stroke="#000000" stroke-width="2" fill="none"/>
+            <!-- Botones -->
+            <circle cx="100" cy="100" r="4" fill="#000000"/>
+            <circle cx="100" cy="115" r="4" fill="#000000"/>
+            <circle cx="100" cy="160" r="4" fill="#000000"/>
+            <circle cx="100" cy="180" r="4" fill="#000000"/>
+            <!-- Sombrero -->
+            <rect x="70" y="30" width="60" height="8" fill="#000000"/>
+            <rect x="80" y="10" width="40" height="20" fill="#000000"/>
+            <!-- Bufanda -->
+            <ellipse cx="100" cy="80" rx="35" ry="8" fill="#c41e3a"/>
+            <rect x="120" y="75" width="15" height="40" fill="#c41e3a"/>
+        </svg>
+    </div>
+
+    <!-- ✨✨✨ AQUÍ VA TU MENSAJE NAVIDEÑO ✨✨✨ -->
+    <div class="message-card">
+        <h2>🎅 Un Mensaje Especial para Ustedes 🎁</h2>
+        
+        <p>
+            ¡Hola familia! 
+            En esta época tan especial del año, me siento muy alegre por todo lo que logramos juntos, todos los momento que pasamos juntos, las navidades que nos dieron, todo fue perfecto, me siento muy feliz de que sean mi familia.
+        </p>
+        
+        <p>
+            Que la magia de la Navidad llene nuestro hogar de amor, paz y felicidad. Que cada copo de nieve que cae 
+            traiga consigo buenos deseos y que el Año Nuevo nos traiga nuevas oportunidades para cumplir sus sueños.
+        </p>
+        
+        <p>
+            Gracias por ser parte de mi vida y por todos los momentos compartidos. Los quiero mucho a todos, espero que podamos seguir 
+            creando recuerdos hermosos juntos. ¡Les deseo una Feliz Navidad y un Próspero Año Nuevo 2026!
+        </p>
+        
+        <p class="signature">
+            Con cariño, <br>
+            Miguel Bustillos 🎄<br>
+            Diciembre 2025
+        </p>
+    </div>
+
+    <!-- Video y Canvas -->
+    <div class="contenedor">
+        <video id="video-villancicos" controls>
+            <source src="videos/villancicos.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        
+        <canvas id="fireworksCanvas"></canvas>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Crear estrellas
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.width = star.style.height = Math.random() * 3 + 1 + 'px';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Nieve cayendo
+        const snowCanvas = document.getElementById('snowCanvas');
+        const snowCtx = snowCanvas.getContext('2d');
+        snowCanvas.width = window.innerWidth;
+        snowCanvas.height = window.innerHeight;
+
+        const snowflakes = [];
+        for (let i = 0; i < 150; i++) {
+            snowflakes.push({
+                x: Math.random() * snowCanvas.width,
+                y: Math.random() * snowCanvas.height,
+                radius: Math.random() * 3 + 1,
+                speed: Math.random() * 1 + 0.5,
+                drift: Math.random() * 0.5 - 0.25
+            });
+        }
+
+        function drawSnow() {
+            snowCtx.clearRect(0, 0, snowCanvas.width, snowCanvas.height);
+            snowCtx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+            snowCtx.beginPath();
+            
+            for (let flake of snowflakes) {
+                snowCtx.moveTo(flake.x, flake.y);
+                snowCtx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+            }
+            
+            snowCtx.fill();
+            updateSnow();
+        }
+
+        function updateSnow() {
+            for (let flake of snowflakes) {
+                flake.y += flake.speed;
+                flake.x += flake.drift;
+                
+                if (flake.y > snowCanvas.height) {
+                    flake.y = 0;
+                    flake.x = Math.random() * snowCanvas.width;
+                }
+                
+                if (flake.x > snowCanvas.width) flake.x = 0;
+                if (flake.x < 0) flake.x = snowCanvas.width;
+            }
+        }
+
+        setInterval(drawSnow, 30);
+
+        // Redimensionar canvas
+        window.addEventListener('resize', () => {
+            snowCanvas.width = window.innerWidth;
+            snowCanvas.height = window.innerHeight;
+            fireworksCanvas.width = fireworksCanvas.offsetWidth;
+            fireworksCanvas.height = fireworksCanvas.offsetHeight;
+        });
+
+        // Control de música mejorado
+        const music = document.getElementById('bg-music');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const video = document.getElementById('video-villancicos');
+        
+        function playMusic() {
+            music.play();
+            playBtn.style.display = 'none';
+            pauseBtn.style.display = 'inline-block';
+            pauseBtn.innerHTML = '⏸️ Pausar Música';
+        }
+        
+        function toggleMusic() {
+            if (music.paused) {
+                music.play();
+                pauseBtn.innerHTML = '⏸️ Pausar Música';
+            } else {
+                music.pause();
+                pauseBtn.innerHTML = '▶️ Reanudar Música';
+            }
+        }
+
+        // Pausar música cuando se reproduce el video
+        video.addEventListener('play', () => {
+            music.pause();
+            if (pauseBtn.style.display !== 'none') {
+                pauseBtn.innerHTML = '▶️ Reanudar Música';
+            }
+        });
+        
+        // Reanudar música cuando se pausa el video
+        video.addEventListener('pause', () => {
+            if (!music.paused) return; // Si ya está sonando, no hacer nada
+            music.play();
+            if (pauseBtn.style.display !== 'none') {
+                pauseBtn.innerHTML = '⏸️ Pausar Música';
+            }
+        });
+        
+        // Reanudar música cuando termina el video
+        video.addEventListener('ended', () => {
+            music.play();
+            if (pauseBtn.style.display !== 'none') {
+                pauseBtn.innerHTML = '⏸️ Pausar Música';
+            }
+        });
+
+        // Fuegos artificiales en canvas
+        const fireworksCanvas = document.getElementById('fireworksCanvas');
+        const fwCtx = fireworksCanvas.getContext('2d');
+        fireworksCanvas.width = fireworksCanvas.offsetWidth;
+        fireworksCanvas.height = fireworksCanvas.offsetHeight;
+
+        const particles = [];
+
+        function createFirework() {
+            const x = Math.random() * fireworksCanvas.width;
+            const y = Math.random() * fireworksCanvas.height * 0.5;
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ffffff'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            for (let i = 0; i < 30; i++) {
+                const angle = (Math.PI * 2 * i) / 30;
+                particles.push({
+                    x: x,
+                    y: y,
+                    vx: Math.cos(angle) * (Math.random() * 3 + 2),
+                    vy: Math.sin(angle) * (Math.random() * 3 + 2),
+                    life: 100,
+                    color: color
+                });
+            }
+        }
+
+        function drawFireworks() {
+            fwCtx.fillStyle = 'rgba(10, 17, 40, 0.2)';
+            fwCtx.fillRect(0, 0, fireworksCanvas.width, fireworksCanvas.height);
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                fwCtx.fillStyle = p.color;
+                fwCtx.beginPath();
+                fwCtx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+                fwCtx.fill();
+                
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.1;
+                p.life--;
+                
+                if (p.life <= 0) particles.splice(i, 1);
+            }
+        }
+
+        setInterval(createFirework, 1000);
+        setInterval(drawFireworks, 30);
+    </script>
+</body>
+</html>
